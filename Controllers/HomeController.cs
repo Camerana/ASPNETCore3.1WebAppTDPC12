@@ -28,6 +28,12 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
             return View();
         }
 
+        public IActionResult RandomNumber()
+        {
+            Random r = new Random();
+            return View(r.Next());
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
