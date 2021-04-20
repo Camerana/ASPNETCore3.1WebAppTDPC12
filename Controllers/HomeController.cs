@@ -28,6 +28,14 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
             return View();
         }
 
+        public IActionResult Preferiti()
+        {
+            PreferitiModel model = new PreferitiModel();
+            model.Preferiti.Add("Queen - Bohemian Rapsody");
+            model.Preferiti.Add("Queen - Don't stop me now");
+            return View(model);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

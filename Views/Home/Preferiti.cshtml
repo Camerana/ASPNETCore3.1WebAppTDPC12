@@ -1,0 +1,21 @@
+﻿@model PreferitiModel
+@{
+    ViewData["Title"] = "Preferiti";
+}
+
+@{
+    if (Model != null && Model.Preferiti.Count > 0)
+    {
+        <p>I tuoi preferiti sono:</p>
+        <ul>
+            @foreach (string preferito in Model.Preferiti)
+            {
+                <li>@preferito</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Non hai preferiti salvati</p>
+    }
+}
