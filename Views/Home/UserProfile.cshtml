@@ -3,7 +3,7 @@
     ViewData["Title"] = "User Profile";
 }
 @{
-    if (Model != null & Model.Count > 0)
+    if (Model != null && Model.Count > 0)
     {
         <h5 style="color:red">Le tue canzoni sono:</h5>
         foreach (string canzone in Model)
