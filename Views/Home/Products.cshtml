@@ -1,0 +1,10 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Prodotti";
+}
+@{
+    foreach (string prodotto in Model)
+    {
+        <div>@prodotto</div>
+    }
+}

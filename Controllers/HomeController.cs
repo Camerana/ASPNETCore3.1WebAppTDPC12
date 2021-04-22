@@ -6,16 +6,17 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TDPC12_ASPNETCore3._1WebAppMVC.Models;
+using TDPC12_ASPNETCore3._1WebAppMVC.Services;
 
 namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IProductService ProductService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductService productService)
         {
-            _logger = logger;
+            this.ProductService = productService;
         }
 
         public IActionResult Index()
@@ -26,6 +27,12 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Products()
+        {
+            List<string> prodotti = this.ProductService.GetProducts();
+            return View(prodotti);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

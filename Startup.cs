@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TDPC12_ASPNETCore3._1WebAppMVC.Services;
 
 namespace TDPC12_ASPNETCore3._1WebAppMVC
 {
@@ -24,6 +25,10 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddSingleton
+            //services.AddScoped(typeof(ProductService));
+            services.AddScoped(typeof(IProductService), typeof(ProductService));
+            //services.AddTransient
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
