@@ -13,10 +13,12 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
     public class HomeController : Controller
     {
         private IProductService ProductService;
+        private IUserService UserService;
 
-        public HomeController(IProductService productService)
+        public HomeController(IProductService productService, IUserService userService)
         {
             this.ProductService = productService;
+            this.UserService = userService;
         }
 
         public IActionResult Index()
@@ -33,6 +35,12 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
         {
             List<string> prodotti = this.ProductService.GetProducts();
             return View(prodotti);
+        }
+
+        public IActionResult UserProfile()
+        {
+            List<string> canzoni = this.UserService.GetUserFavourites();
+            return View(canzoni);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

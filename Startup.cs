@@ -29,6 +29,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC
             //services.AddScoped(typeof(ProductService));
             services.AddScoped(typeof(IProductService), typeof(ProductService));
             //services.AddTransient
+            services.AddScoped(typeof(IUserService), typeof(UserService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

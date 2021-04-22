@@ -1,0 +1,10 @@
+﻿Prendendo spunto dal branch Services:
+	- creare una interfaccia IUserService con GetUserFavourites
+	- creare un servizio UserService che implementi IUserService
+	- registrare il servizio in Startup.cs
+	- tramite dependency injection passare un'istanza di IUserService
+	nel costruttore di HomeController
+	- creare una nuova pagina User.cshtml
+	- creare il relativo endpoint User in HomeController
+	- esporre nella pagina User.cshtml l'elenco delle
+	canzoni preferite dello user che visita la pagina
