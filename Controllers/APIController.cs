@@ -13,9 +13,8 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class APIController : ControllerBase
-    {
-        /*
-        [HttpGet]
+    {        
+        [HttpGet("getasync")]
         public async Task<List<string>> GetAsync()
         {
             List<string> result = new List<string>()
@@ -35,7 +34,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
             });
             return result;
         }
-        */
+        
 
         // GET api/<APIController>/5
         [HttpGet("{id}")]
