@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using TDPC12_ASPNETCore3._1WebAppMVC.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,15 +14,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
     [ApiController]
     public class APIController : ControllerBase
     {
-        // GET: api/<APIController>
         /*
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-        */
-
         [HttpGet]
         public async Task<List<string>> GetAsync()
         {
@@ -42,6 +35,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
             });
             return result;
         }
+        */
 
         // GET api/<APIController>/5
         [HttpGet("{id}")]
@@ -51,13 +45,31 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
                 return BadRequest();
             else
             {
-                var item = new
+                Person person = new Person()
                 {
-                    ID = id,
+                    ID = Guid.NewGuid(),
                     Nome = "Tizio",
                     Cognome = "Caio"
                 };
-                return Ok(item);
+                return Ok(person);
+            }
+        }
+
+        // GET api/<APIController>/5
+        [HttpGet]
+        public async Task<object> GetAsync([FromQuery] string nome, [FromQuery] string cognome)
+        {
+            if (nome != "Tizio")
+                return BadRequest();
+            else
+            {
+                Person person = new Person()
+                {
+                    ID = Guid.NewGuid(),
+                    Nome = "Tizio FromQueryString",
+                    Cognome = "Caio FromQueryString"
+                };
+                return Ok(person);
             }
         }
 
