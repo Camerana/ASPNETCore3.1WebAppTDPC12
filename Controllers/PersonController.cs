@@ -27,15 +27,12 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Person person)
         {
-            return Ok();
-            /*
             if (person != null)
             {
                 person.Nome = person.Nome + " NEW";
                 person.Cognome = person.Cognome + " NEW";
             }
             return Ok(person);
-            */
         }
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] Person person)

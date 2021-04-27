@@ -1,19 +1,13 @@
 ﻿function ajaxCall() {
-    var data = {
-        ID: "a3b5d487-0000-0000-0000-14d5c7813c8a",
-        Nome: "Dante",
-        Cognome: "Alighieri",
-    };
-    /*
+    var body = {};
     body.ID = "a3b5d487-0000-0000-0000-14d5c7813c8a";
     body.Nome = "Dante";
     body.Cognome = "Alighieri";
-    */
     $.ajax({
         method: "POST",
         url: "/api/Person",
         contentType: "application/json; charset=utf-8",
-        data: data,
+        data: JSON.stringify(body),
         dataType: "json",
         success: function (data, status) {
             console.log(body);
