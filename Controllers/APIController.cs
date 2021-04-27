@@ -54,7 +54,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
             }
         }
 
-        // GET api/<APIController>/5
+        // GET api/<APIController>?nome=valore1&cognome=valore2
         [HttpGet]
         public async Task<object> GetAsync([FromQuery] string nome, [FromQuery] string cognome)
         {
