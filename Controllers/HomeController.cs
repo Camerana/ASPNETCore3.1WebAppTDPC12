@@ -1,21 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
+using TDPC12_ASPNETCore3._1WebAppMVC.Entity;
 using TDPC12_ASPNETCore3._1WebAppMVC.Models;
+using TDPC12_ASPNETCore3._1WebAppMVC.Repositories;
 
 namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private TDPC12Repository repository;
+        public HomeController(TDPC12Repository repository)
         {
-            _logger = logger;
+            this.repository = repository;
         }
 
         public IActionResult Index()
@@ -26,6 +24,41 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Persons()
+        {
+            List<Person> persons = this.repository.GetPersons();
+            List<PersonModel> model = new List<PersonModel>();
+            foreach (Person p in persons)
+                model.Add(new PersonModel()
+                {
+                    Nome = p.Nome,
+                    Cognome = p.Cognome
+                });
+            return View(model);
+        }
+        public IActionResult PersonByID()
+        {
+            Person person = this.repository.GetPersonByID("04214263-1155-4B46-938A-40D989048BBA");
+            PersonModel model = new PersonModel()
+            {
+                Nome = person.Nome,
+                Cognome = person.Cognome
+            };
+            return View(model);
+        }
+        public IActionResult PersonsWithFilter()
+        {
+            List<Person> persons = this.repository.GetPersonWithFilter("lu");
+            List<PersonModel> model = new List<PersonModel>();
+            foreach (Person p in persons)
+                model.Add(new PersonModel()
+                {
+                    Nome = p.Nome,
+                    Cognome = p.Cognome
+                });
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
