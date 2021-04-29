@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TDPC12_ASPNETCore3._1WebAppMVC.Context;
 using TDPC12_ASPNETCore3._1WebAppMVC.Entity;
 
@@ -30,6 +28,11 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Repositories
                 .Where(p => p.Nome.Contains(filter)
                 || p.Cognome.Contains(filter)).ToList();
             return result;
+        }
+        public void InsertPerson(Person person)
+        {
+            this.DBContext.Persons.Add(person);
+            this.DBContext.SaveChanges();
         }
     }
 }
