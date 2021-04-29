@@ -1,4 +1,6 @@
 ﻿Entity Framework:
 	- creare un DBContext
 	- registrare il DBContext in Startup
+	- in appsettings.json scrivere una connection string
+	- registrare la connectionstring in Startup
 	- creare una repository
