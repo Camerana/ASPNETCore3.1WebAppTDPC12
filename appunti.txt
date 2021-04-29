@@ -1,0 +1,4 @@
+﻿Entity Framework:
+	- creare un DBContext
+	- registrare il DBContext in Startup
+	- creare una repository
