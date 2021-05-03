@@ -1,16 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TDPC12_ASPNETCore3._1WebAppMVC.Context;
-using TDPC12_ASPNETCore3._1WebAppMVC.Repositories;
+using TDPC12_ASPNETCore3._1WebAppMVC.Data;
 
 namespace TDPC12_ASPNETCore3._1WebAppMVC
 {
@@ -27,8 +21,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<TDPC12Repository>();
-            services.AddDbContext<TDPC12DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<TDPC12EFContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

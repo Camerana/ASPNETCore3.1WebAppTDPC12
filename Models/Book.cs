@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace TDPC12_ASPNETCore3._1WebAppMVC.Models
 {
-    public partial class Person
+    public partial class Book
     {
         public Guid Id { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public int Age { get; set; }
+        public string Title { get; set; }
+        public bool Read { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -1,15 +1,16 @@
-﻿@model List<PersonModel>;
+﻿@model List<Person>;
 
 <table>
     <tr>
         <td>Nome</td>
         <td>Cognome</td>
     </tr>
-    @foreach (PersonModel p in Model)
+    @foreach (Person p in Model)
     {
         <tr>
             <td>@p.Firstname</td>
             <td>@p.Lastname</td>
+            <td>@p.Age</td>
         </tr>
     }
 </table>
