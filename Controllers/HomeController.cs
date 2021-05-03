@@ -24,9 +24,6 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
 
         public IActionResult Privacy()
         {
-            Person p = new Person();
-
-
             return View();
         }
 
