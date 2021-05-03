@@ -9,6 +9,6 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Models
         public Guid Id { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public int Age { get; set; }
+        public int? Age { get; set; }
     }
 }

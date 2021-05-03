@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TDPC12_ASPNETCore3._1WebAppMVC.Data;
 
 namespace TDPC12_ASPNETCore3._1WebAppMVC
 {

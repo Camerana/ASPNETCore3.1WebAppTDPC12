@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using TDPC12_ASPNETCore3._1WebAppMVC.Models;
 
-namespace TDPC12_ASPNETCore3._1WebAppMVC.Data
+namespace TDPC12_ASPNETCore3._1WebAppMVC
 {
     public partial class TDPC12EFContext : DbContext
     {
@@ -41,6 +41,8 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Data
             modelBuilder.Entity<Person>(entity =>
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Age).HasDefaultValueSql("((0))");
             });
 
             OnModelCreatingPartial(modelBuilder);
