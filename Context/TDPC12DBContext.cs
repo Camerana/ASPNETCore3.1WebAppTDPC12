@@ -9,6 +9,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Context
             : base(options)
         {
         }
+
         public DbSet<Person> Persons { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -7,32 +7,33 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Repositories
 {
     public class TDPC12Repository
     {
-        private TDPC12DBContext DBContext;
-        public TDPC12Repository(TDPC12DBContext DBContext)
+        private TDPC12DBContext _context;
+        public TDPC12Repository(TDPC12DBContext context)
         {
-            this.DBContext = DBContext;
+            _context = context;
         }
+
         public List<Person> GetPersons()
         {
-            List<Person> result = this.DBContext.Persons.ToList();
+            List<Person> result = _context.Persons.ToList();
             return result;
         }
         public Person GetPersonByID(string id)
         {
-            Person result = this.DBContext.Persons.Where(p => p.ID.ToString() == id).FirstOrDefault();
+            Person result = _context.Persons.Where(p => p.Id.ToString() == id).FirstOrDefault();
             return result;
         }
         public List<Person> GetPersonWithFilter(string filter)
         {
-            List<Person> result = this.DBContext.Persons
-                .Where(p => p.Nome.Contains(filter)
-                || p.Cognome.Contains(filter)).ToList();
+            List<Person> result = _context.Persons
+                .Where(p => p.Firstname.Contains(filter)
+                || p.Lastname.Contains(filter)).ToList();
             return result;
         }
         public void InsertPerson(Person person)
         {
-            this.DBContext.Persons.Add(person);
-            this.DBContext.SaveChanges();
+            _context.Persons.Add(person);
+            _context.SaveChanges();
         }
     }
 }

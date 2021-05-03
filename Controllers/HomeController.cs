@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private TDPC12Repository repository;
+        private TDPC12Repository _repository;
         public HomeController(TDPC12Repository repository)
         {
-            this.repository = repository;
+            _repository = repository;
         }
 
         public IActionResult Index()
@@ -23,40 +24,44 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
 
         public IActionResult Privacy()
         {
+            Person p = new Person();
+
+
             return View();
         }
 
         public IActionResult Persons()
         {
-            List<Person> persons = this.repository.GetPersons();
+            List<Person> persons = _repository.GetPersons();
             List<PersonModel> model = new List<PersonModel>();
             foreach (Person p in persons)
                 model.Add(new PersonModel()
                 {
-                    Nome = p.Nome,
-                    Cognome = p.Cognome
+                    Firstname = p.Firstname,
+                    Lastname = p.Lastname
                 });
             return View(model);
         }
+
         public IActionResult PersonByID()
         {
-            Person person = this.repository.GetPersonByID("04214263-1155-4B46-938A-40D989048BBA");
+            Person person = _repository.GetPersonByID("04214263-1155-4B46-938A-40D989048BBA");
             PersonModel model = new PersonModel()
             {
-                Nome = person.Nome,
-                Cognome = person.Cognome
+                Firstname = person.Firstname,
+                Lastname = person.Lastname
             };
             return View(model);
         }
         public IActionResult PersonsWithFilter()
         {
-            List<Person> persons = this.repository.GetPersonWithFilter("lu");
+            List<Person> persons = _repository.GetPersonWithFilter("lu");
             List<PersonModel> model = new List<PersonModel>();
             foreach (Person p in persons)
                 model.Add(new PersonModel()
                 {
-                    Nome = p.Nome,
-                    Cognome = p.Cognome
+                    Firstname = p.Firstname,
+                    Lastname = p.Lastname
                 });
             return View(model);
         }
