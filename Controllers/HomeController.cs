@@ -21,6 +21,16 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Test(string firstname, string lastname)
+        {
+            ViewBag.firstname = firstname;
+            ViewBag.lastname = lastname;
+
+
+            return View("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();
