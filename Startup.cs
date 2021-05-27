@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using TDPC12_ASPNETCore3._1WebAppMVC.DBContext;
+using TDPC12_ASPNETCore3._1WebAppMVC.Entities;
 
 namespace TDPC12_ASPNETCore3._1WebAppMVC
 {
@@ -24,6 +23,16 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<UserDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AuthDB")));
+
+            //User Management
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<UserDBContext>()
+                .AddDefaultTokenProviders();
+            services.AddScoped<SignInManager<User>>();
+            services.AddScoped<UserManager<User>>();
+            services.AddScoped<RoleManager<IdentityRole>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +52,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

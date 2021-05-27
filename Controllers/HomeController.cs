@@ -1,21 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using TDPC12_ASPNETCore3._1WebAppMVC.DBContext;
+using TDPC12_ASPNETCore3._1WebAppMVC.Entities;
 using TDPC12_ASPNETCore3._1WebAppMVC.Models;
 
 namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private SignInManager<User> signInManager;
+        private UserManager<User> userManager;
+        private UserDBContext dbContext;
+        public HomeController(SignInManager<User> signInManager,
+            UserManager<User> userManager,
+            UserDBContext dbContext)
         {
-            _logger = logger;
+            this.signInManager = signInManager;
+            this.userManager = userManager;
+            this.dbContext = dbContext;
         }
 
         public IActionResult Index()
@@ -26,6 +35,49 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginModel loginModel)
+        {
+            try
+            {
+                User user = await userManager.FindByNameAsync(loginModel.UserName);
+                if (user != null)
+                {
+                    var result = await signInManager.PasswordSignInAsync(loginModel.UserName, loginModel.Password, false, lockoutOnFailure: true);
+                    if (result.Succeeded)
+                    {
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Redirect("Index");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            try
+            {
+                if (signInManager.IsSignedIn(User))
+                {
+                    await signInManager.SignOutAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return Redirect("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
