@@ -31,8 +31,8 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        [Authorize]
+        public IActionResult HiddenPage()
         {
             return View();
         }
