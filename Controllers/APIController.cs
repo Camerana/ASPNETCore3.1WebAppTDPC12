@@ -13,7 +13,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class APIController : ControllerBase
-    {        
+    {
         [HttpGet("getasync")]
         public async Task<List<string>> GetAsync()
         {
@@ -26,7 +26,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
             //qui posso mettere await se voglio aspettare
             await Task.Run(() =>
             {
-                Thread.Sleep(5000);
+                //Thread.Sleep(5000);
                 result = new List<string>() {
                 "stringa async 1",
                 "stringa async 2"
@@ -34,7 +34,7 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
             });
             return result;
         }
-        
+
 
         // GET api/<APIController>/5
         [HttpGet("{id}")]
