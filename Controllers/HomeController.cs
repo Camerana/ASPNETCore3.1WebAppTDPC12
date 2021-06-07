@@ -60,6 +60,21 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
                 });
             return View(model);
         }
+        public IActionResult InsertPerson()
+        {
+            Person person = new Person()
+            {
+                Nome = "Insert Nome",
+                Cognome = "Insert Cognome",
+                Stipendio = 1000000
+            };
+            this.repository.InsertPerson(person);
+            return View(new PersonModel()
+            {
+                Nome = person.Nome,
+                Cognome = person.Cognome
+            });
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
