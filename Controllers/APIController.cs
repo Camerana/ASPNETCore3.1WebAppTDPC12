@@ -34,7 +34,18 @@ namespace TDPC12_ASPNETCore3._1WebAppMVC.Controllers
             });
             return result;
         }
-
+        [HttpGet("GetDDLValue")]
+        public async Task<object> GetDDLValue(int id)
+        {
+            Dictionary<int, string> values = new Dictionary<int, string>();
+            values.Add(0, "zero");
+            values.Add(1, "uno");
+            values.Add(2, "due");
+            return new
+            {
+                Value = values[id]
+            };
+        }
 
         // GET api/<APIController>/5
         [HttpGet("{id}")]

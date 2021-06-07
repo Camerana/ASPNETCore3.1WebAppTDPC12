@@ -45,6 +45,27 @@ function ajaxCallListaStringhe() {
         always: function () { }
     });
 };
+function ajaxCallDDLValue() {
+    var value = $("#DDLValue").val();
+    var url = "/api/API/GetDDLValue?id=" + value;
+    $.ajax({
+        method: "GET",
+        url: url,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data, status) {
+            console.log(data);
+            $("#resultDivDDLValue").append("<br/><div>" + data.value + "</div>");
+            this.always();
+        },
+        error: function (error, status) {
+            console.log(error);
+            console.log(status);
+            this.always();
+        },
+        always: function () { }
+    });
+};
 /*
 function ajaxCall(url, data) {
     $.ajax({
